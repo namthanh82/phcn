@@ -20,6 +20,12 @@ env/
 # Generated / temporary data
 *.csv
 *.zip
+*.7z
+*.rar
+*.tar
+*.gz
+*.xz
+*.bz2
 
 # Documents not needed in history
 *.pdf
