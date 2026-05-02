@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# Build / cache
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Generated / temporary data
+*.csv
+*.zip
+
+# Documents not needed in history
+*.pdf
+
+# Optional local notes
+# Uncomment if you do not want to track project notes
+# claude.md
+# todo.md
+
+# Local OS files
+Thumbs.db
+.DS_Store
