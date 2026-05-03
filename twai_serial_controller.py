@@ -67,6 +67,8 @@ class TWAIController(threading.Thread):
 
         # ── Raw position từ ESP32 (revolutions) ──────────────────────────
         self._raw_pos = [0.0, 0.0]
+        self.torque_set = [0.0, 0.0]
+        self.use_torque_commands = True
 
         # ── Control params (dùng cho GUI control panel) ──────────────────
         self.Kp             = 10.0
@@ -129,16 +131,28 @@ class TWAIController(threading.Thread):
             return None
         return CLOSED_LOOP_CONTROL if self.closed_loop_control else IDLE
 
+    def _send_simple_cmd(self, cmd: str):
+        if not self.ser or not self.ser.is_open:
+            return
+        try:
+            self.ser.write((cmd + "\n").encode("ascii"))
+        except Exception as e:
+            print(f"[TWAI] Lỗi ghi Serial ({cmd}): {e}")
+            self.connected = False
+
     def enter_closed_loop(self):
-        """Kích hoạt chế độ gửi lệnh position."""
+        """Kích hoạt chế độ gửi lệnh position và yêu cầu bridge vào CLOSED_LOOP."""
         if not self.esp32_ready:
             print("[TWAI] ESP32 chưa READY, không thể vào Closed Loop.")
             return
+        self._send_simple_cmd("CLEAR")
+        self._send_simple_cmd("CLOSE")
         self.closed_loop_control = True
         self.status_message = "Closed Loop đang chạy"
         print("[TWAI] Đã vào CLOSED_LOOP_CONTROL.")
 
     def return_IDLE(self):
+        self._send_simple_cmd("IDLE")
         self.closed_loop_control = False
         self.status_message = "IDLE"
         print("[TWAI] Trở về IDLE.")
@@ -155,6 +169,7 @@ class TWAIController(threading.Thread):
 
     def emergency_stop(self):
         self._estop_event.set()
+        self._send_simple_cmd("IDLE")
         self.status_message = "ESTOP!"
         print("[TWAI] EMERGENCY STOP!")
 
@@ -162,6 +177,7 @@ class TWAIController(threading.Thread):
         self._estop_event.clear()
         self.isOffset = False
         self.return_IDLE()
+        self._send_simple_cmd("CLEAR")
         self.status_message = "Reset xong"
         print("[TWAI] Reset.")
 
@@ -259,6 +275,14 @@ class TWAIController(threading.Thread):
         elif line.startswith("READY"):
             self.esp32_ready = True
             self.status_message = "ESP32 READY — có thể vào Closed Loop"
+            print(f"[TWAI] {line}")
+
+        elif line.startswith("STATUS"):
+            self.status_message = line
+            print(f"[TWAI] {line}")
+
+        elif line.startswith("WARN"):
+            self.status_message = line
             print(f"[TWAI] {line}")
 
         elif line.startswith("INFO"):
@@ -377,6 +401,10 @@ class TWAIController(threading.Thread):
             try:
                 # 1. Đọc và parse phản hồi từ ESP32
                 self._process_serial()
+
+                # Poll trạng thái bridge định kỳ
+                if int(time.time() * 10) % 20 == 0:
+                    self._send_simple_cmd("STATUS")
 
                 # 2. Gửi lệnh position nếu đang Closed Loop
                 if self.is_controlable():
