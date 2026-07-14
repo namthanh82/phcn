@@ -7,6 +7,7 @@ __pycache__/
 .venv/
 venv/
 env/
+.venv_test/
 
 # IDE
 .vscode/
@@ -38,3 +39,19 @@ env/
 # Local OS files
 Thumbs.db
 .DS_Store
+
+# PyQt5 / Qt
+*.qrc.bak
+build/
+dist/
+
+# ODrive
+*.txt.bak
+*.json.bak
+
+# Session / runtime data (Phục hồi chức năng)
+database/sessions/
+database/dev/*/reports/*.tmp
+database/dev/*/control_data.json
+database/doctors/*/*/control_data.json
+database/doctors/*/*/reports/*.tmp
