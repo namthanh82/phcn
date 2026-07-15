@@ -17,3 +17,12 @@ export PYTHONPATH=/usr/lib/python3/dist-packages:$PYTHONPATH
 
 # Chạy thử
 python GUI.py
+
+
+
+
+[SingleJointController] Không import được odrive: No module named 'odrive'
+                    Cài đặt: pip install odrive
+
+(python:2908): GLib-GObject-CRITICAL **: 04:13:48.076: g_object_unref: assertion 'G_IS_OBJECT (object)' failed
+[SingleJointController] Trajectory type changed to: Quintic
