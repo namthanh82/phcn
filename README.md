@@ -1,42 +1,22 @@
-# Xóa venv cũ
-cd ~/phcn/giaodienphuchoi/scripts
-rm -rf .venv
-
-# Cài PyQt5 từ apt (đã compiled sẵn)
-sudo apt update
-sudo apt install -y python3-pyqt5 python3-pyqt5.qtchart python3-pyqt5.qtserialport
-
-# Tạo venv mới, KHÔNG cài PyQt5 vào venv
-python3 -m venv .venv
-source .venv/bin/activate
-pip install --upgrade pip
-pip install pyyaml numpy
-
-# Nói Python tìm PyQt5 từ system
-export PYTHONPATH=/usr/lib/python3/dist-packages:$PYTHONPATH
-
-# Chạy thử
-python GUI.py
-
-
-
-
-source .venv/bin/activate
-pip install odrive
-
-
-pip install --user odrive
-
-
-
-(.venv) namthanh5555@komlab:~/phcn/giaodienphuchoi/scripts $ source .venv/bin/activate pip install odrive
-(.venv) namthanh5555@komlab:~/phcn/giaodienphuchoi/scripts $ pip install --user odrive
-ERROR: Can not perform a '--user' install. User site-packages are not visible in this virtualenv.
-
-
-
-
-
-source .venv/bin/activate
-pip install odrive
-
+[141546ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[142046ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[142546ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[143046ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[143546ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[144046ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[144546ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[145046ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[145546ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[146046ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS)
+[SingleJointController] Connection failed: 
+[SingleJointController] Connecting to ODrive...
+[151656ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[152156ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[152656ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[153156ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[153657ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[154157ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[154657ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[155157ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[155657ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS). Retrying in 0.5s...
+[156157ms] [UsbInterface] Failed to open USB device: -3 (LIBUSB_ERROR_ACCESS)
