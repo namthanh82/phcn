@@ -1,53 +1,5 @@
-sudo apt update && sudo apt -y upgrade
-sudo apt install -y python3 python3-venv python3-pip git \
-                    libqt5gui5 libqt5widgets5 libqt5charts5 \
-                    fonts-noto-core
-
-
-sudo tee /etc/udev/rules.d/99-odrive.rules <<'EOF'
-SUBSYSTEM=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="0d32", MODE="0666"
-SUBSYSTEM=="usb", ATTRS{idVendor}=="1209", ATTRS{idProduct}=="0d33", MODE="0666"
-EOF
-sudo udevadm control --reload-rules && sudo udevadm trigger
-sudo usermod -aG dialout $USER
-# logout/login lại để nhận group dialout
-
-
-cd ~
-git clone https://github.com/namthanh82/phcn.git
-cd phcn/giaodienphuchoi/scripts
-python3 -m venv .venv
-source .venv/bin/activate
-pip install --upgrade pip
-pip install -r requirements.txt
-
-
-
-cd ~/phcn/giaodienphuchoi/scripts
-./runapp.sh
-
-
-cat > runapp.sh <<'EOF'
-#!/usr/bin/env bash
-set -e
-cd "$(dirname "$0")"
-if [ -x ".venv/bin/python" ]; then PY=".venv/bin/python"; else PY="python3"; fi
-echo "[GUI] Using $($PY --version)"
-exec "$PY" GUI.py "$@"
-EOF
-chmod +x runapp.sh
-
-
-
-
-
-
-
-
-
-
-
-Installing build dependencies ... done
+  Using cached PyQt5-5.15.11.tar.gz (3.2 MB)
+  Installing build dependencies ... done
   Getting requirements to build wheel ... done
   Preparing metadata (pyproject.toml) ... error
   error: subprocess-exited-with-error
@@ -65,25 +17,25 @@ Installing build dependencies ... done
                                    ~~~~^^^^^^^^^^^^^^^^^^^^^^^^
         File "/home/namthanh5555/phcn/giaodienphuchoi/scripts/.venv/lib/python3.13/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 178, in prepare_metadata_for_build_wheel
           whl_basename = backend.build_wheel(metadata_directory, config_settings)
-        File "/tmp/pip-build-env-_h4tioyr/overlay/lib/python3.13/site-packages/sipbuild/api.py", line 28, in build_wheel
+        File "/tmp/pip-build-env-gelr0l_k/overlay/lib/python3.13/site-packages/sipbuild/api.py", line 28, in build_wheel
           project = AbstractProject.bootstrap('wheel',
                   arguments=_convert_config_settings(config_settings))
-        File "/tmp/pip-build-env-_h4tioyr/overlay/lib/python3.13/site-packages/sipbuild/abstract_project.py", line 74, in bootstrap
+        File "/tmp/pip-build-env-gelr0l_k/overlay/lib/python3.13/site-packages/sipbuild/abstract_project.py", line 74, in bootstrap
           project.setup(pyproject, tool, tool_description)
           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-        File "/tmp/pip-build-env-_h4tioyr/overlay/lib/python3.13/site-packages/sipbuild/project.py", line 661, in setup
+        File "/tmp/pip-build-env-gelr0l_k/overlay/lib/python3.13/site-packages/sipbuild/project.py", line 661, in setup
           self.apply_user_defaults(tool)
           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-        File "/tmp/pip-install-no448cdd/pyqt5_984bbfbb2a53409fa55574bb0b5b0bdb/project.py", line 68, in apply_user_defaults
+        File "/tmp/pip-install-hu987rh5/pyqt5_8342aea1227b41e0a834e6c5b6cead76/project.py", line 68, in apply_user_defaults
           super().apply_user_defaults(tool)
           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-        File "/tmp/pip-build-env-_h4tioyr/overlay/lib/python3.13/site-packages/pyqtbuild/project.py", line 51, in apply_user_defaults
+        File "/tmp/pip-build-env-gelr0l_k/overlay/lib/python3.13/site-packages/pyqtbuild/project.py", line 51, in apply_user_defaults
           super().apply_user_defaults(tool)
           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-        File "/tmp/pip-build-env-_h4tioyr/overlay/lib/python3.13/site-packages/sipbuild/project.py", line 248, in apply_user_defaults
+        File "/tmp/pip-build-env-gelr0l_k/overlay/lib/python3.13/site-packages/sipbuild/project.py", line 248, in apply_user_defaults
           self.builder.apply_user_defaults(tool)
           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-        File "/tmp/pip-build-env-_h4tioyr/overlay/lib/python3.13/site-packages/pyqtbuild/builder.py", line 49, in apply_user_defaults
+        File "/tmp/pip-build-env-gelr0l_k/overlay/lib/python3.13/site-packages/pyqtbuild/builder.py", line 49, in apply_user_defaults
           raise PyProjectOptionException('qmake',
                   "specify a working qmake or add it to PATH")
       sipbuild.pyproject.PyProjectOptionException
@@ -97,5 +49,3 @@ error: metadata-generation-failed
 
 note: This is an issue with the package mentioned above, not pip.
 hint: See above for details.
-
-
