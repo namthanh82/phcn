@@ -26,3 +26,10 @@ pip install odrive
 
 
 pip install --user odrive
+
+
+
+(.venv) namthanh5555@komlab:~/phcn/giaodienphuchoi/scripts $ source .venv/bin/activate pip install odrive
+(.venv) namthanh5555@komlab:~/phcn/giaodienphuchoi/scripts $ pip install --user odrive
+ERROR: Can not perform a '--user' install. User site-packages are not visible in this virtualenv.
+
