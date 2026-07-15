@@ -12,15 +12,11 @@ sudo apt install -y \
     libqt5widgets5 \
     libqt5core5a \
     libqt5charts5 \
-    python3-pyqt5
-
-# Tạo venv MỚI (không compile PyQt5 từ pip nữa)
+    python3-pyqt
 cd ~/phcn/giaodienphuchoi/scripts
 rm -rf .venv
 python3 -m venv .venv
 source .venv/bin/activate
-
-# Chỉ cài những thứ KHÔNG có sẵn trên hệ thống
 pip install --upgrade pip
 pip install pyyaml numpy
-# KHÔNG cần pip install PyQt5 — đã có sẵn hệ thống
+
